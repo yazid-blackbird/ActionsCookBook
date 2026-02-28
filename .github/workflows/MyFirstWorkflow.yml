@@ -13,7 +13,7 @@ jobs:
       - name:  Greet the User
         run: |
           echo "Hello world from ${{ vars.WHO_TO_GREET }}"
-          echo "my secret is ${{secrets.MY_SECRET}}
+          echo "my secret is ${{secrets.MY_SECRET}}"
         shell: bash
       - name: Checkout
         uses: actions/checkout@v6.0.2

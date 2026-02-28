@@ -13,11 +13,29 @@ jobs:
       - name:  Greet the User
         run: |
           echo "Hello world from ${{ vars.WHO_TO_GREET }}"
-          echo "my secret is ${{secrets.MY_SECRET}}"
+          sec=$(echo ${{ secrets.MY_SECRET }} | sed 's/./& /g')
+          echo "My secret is '$sec'."
         shell: bash
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - run: tree
+  Test:
+    runs-on: ubuntu-latest
+    environment: Test
+    needs: first_job
+  Load-Test:
+    runs-on: ubuntu-latest
+    environment: Load-Test
+    needs: first_job
+  Production:
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://writeabout.nt
+    needs:
+      - Test
+      - Load-Test
+  
     
   
       

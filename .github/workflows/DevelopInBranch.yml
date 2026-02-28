@@ -8,6 +8,7 @@ jobs:
             contents: read
             pull-requests: write
         steps:
+            - run: echo "PR title is '${{ github.event.pull_request.title }}'."
             - run: |
                 echo "Workflow triggered in branch '${{ github.ref }}'."
                 echo "Workflow triggered by event '${{ github.event_name }}'."

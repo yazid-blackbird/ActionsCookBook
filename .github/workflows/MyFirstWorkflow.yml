@@ -23,10 +23,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: Test
     needs: first_job
+    steps:
+      - run: echo "from Test"
   Load-Test:
     runs-on: ubuntu-latest
     environment: Load-Test
     needs: first_job
+    steps:
+      - run: echo "from Load-Test"
   Production:
     runs-on: ubuntu-latest
     environment:
@@ -35,7 +39,8 @@ jobs:
     needs:
       - Test
       - Load-Test
-  
+    steps:
+      - run: echo "from Production"
     
   
       
